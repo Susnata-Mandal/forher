@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ♡</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+<div class="bg-glow"></div>
+
+<div id="app">
+
+  <!-- ============ LOCK SCREEN ============ -->
+  <section class="screen active" id="screen-lock">
+    <div class="lock-card">
+      <svg class="mascot" id="lockMascot" viewBox="0 0 120 120" width="92" height="92">
+        <ellipse cx="60" cy="72" rx="34" ry="30" fill="#FFDE7A"/>
+        <ellipse cx="60" cy="40" rx="24" ry="22" fill="#FFDE7A"/>
+        <path d="M60 34 l9 9 l-9 4 l-9 -4 Z" fill="#FF9B4A"/>
+        <circle cx="52" cy="36" r="3.2" fill="#5A3A46" id="mascotEyeL"/>
+        <circle cx="68" cy="36" r="3.2" fill="#5A3A46" id="mascotEyeR"/>
+        <path id="mascotMouth" d="M52 46 Q60 52 68 46" stroke="#C6446B" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="30" cy="92" rx="8" ry="4" fill="#FF9B4A"/>
+        <ellipse cx="90" cy="92" rx="8" ry="4" fill="#FF9B4A"/>
+      </svg>
+      <h1 class="lock-title" id="lockTitle">Enter a passcode</h1>
+      <div class="passcode-dots" id="passcodeDots"></div>
+      <div class="keypad" id="keypad">
+        <button data-key="1">1</button>
+        <button data-key="2">2</button>
+        <button data-key="3">3</button>
+        <button data-key="4">4</button>
+        <button data-key="5">5</button>
+        <button data-key="6">6</button>
+        <button data-key="7">7</button>
+        <button data-key="8">8</button>
+        <button data-key="9">9</button>
+        <button data-key="clear" class="key-alt">C</button>
+        <button data-key="0">0</button>
+        <button data-key="back" class="key-alt">⌫</button>
+      </div>
+      <p class="lock-hint" id="lockHint">for your eyes only ♡</p>
+    </div>
+  </section>
+
+  <!-- ============ HUB / GIFT BOX ============ -->
+  <section class="screen" id="screen-hub">
+    <h1 class="hub-title">click on items to open</h1>
+    <div class="giftbox-scene">
+      <button class="big-gift" data-target="surprise" aria-label="Open big surprise">
+        <svg viewBox="0 0 160 160" width="150" height="150">
+          <rect x="20" y="70" width="120" height="70" rx="10" fill="#FF9BB8"/>
+          <rect x="20" y="70" width="120" height="22" fill="#FF6F91"/>
+          <rect x="70" y="20" width="20" height="120" fill="#FF6F91"/>
+          <path d="M80 20 C40 20 40 55 80 55 C120 55 120 20 80 20 Z" fill="none" stroke="#C6446B" stroke-width="6"/>
+        </svg>
+        <span>open me first</span>
+      </button>
+
+      <div class="heart-tray">
+        <button class="tray-item" data-target="song" title="Our Song">
+          <span class="tray-icon">🎵</span><span class="tray-label">song</span>
+        </button>
+        <button class="tray-item" data-target="notes" title="A Little Note">
+          <span class="tray-icon">💐</span><span class="tray-label">note</span>
+        </button>
+        <button class="tray-item" data-target="jar" title="Everything I Love">
+          <span class="tray-icon">💗</span><span class="tray-label">jar of love</span>
+        </button>
+        <button class="tray-item" data-target="photos" title="Photos">
+          <span class="tray-icon">📷</span><span class="tray-label">photos</span>
+        </button>
+        <button class="tray-item" data-target="award" title="Award">
+          <span class="tray-icon">🎗️</span><span class="tray-label">award</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NOTES ============ -->
+  <section class="screen" id="screen-notes">
+    <button class="back-btn" data-target="hub">← back</button>
+    <div class="note-card">
+      <div class="note-flowers">🌷</div>
+      <h2 class="note-title" id="noteTitle"></h2>
+      <p class="handwritten note-text" id="noteText"></p>
+    </div>
+  </section>
+
+  <!-- ============ SONG ============ -->
+  <section class="screen" id="screen-song">
+    <button class="back-btn" data-target="hub">← back</button>
+    <div class="song-card">
+      <p class="song-eyebrow">now playing</p>
+      <h2 class="song-title" id="songTitle"></h2>
+      <div class="video-frame" id="videoFrame"></div>
+      <p class="handwritten song-caption" id="songCaption"></p>
+    </div>
+  </section>
+
+  <!-- ============ JAR OF LOVE ============ -->
+  <section class="screen" id="screen-jar">
+    <button class="back-btn" data-target="hub">← back</button>
+    <h2 class="jar-heading">everything I love about <span id="jarName"></span></h2>
+    <div class="jar-wrap">
+      <div class="jar-lid"></div>
+      <div class="jar-body">
+        <div class="jar-hearts" id="jarHearts"></div>
+      </div>
+    </div>
+    <p class="jar-hint">tap a heart</p>
+    <div class="jar-reveal-overlay" id="jarRevealOverlay">
+      <div class="jar-reveal-card">
+        <p id="jarRevealText"></p>
+        <button id="jarRevealClose">close</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PHOTOS ============ -->
+  <section class="screen" id="screen-photos">
+    <button class="back-btn" data-target="hub">← back</button>
+    <h2 class="photos-heading">My queen</h2>
+    <div class="photo-grid" id="photoGrid"></div>
+    <p class="handwritten photo-caption" id="photoCaption"></p>
+  </section>
+
+  <!-- ============ AWARD ============ -->
+  <section class="screen" id="screen-award">
+    <button class="back-btn" data-target="hub">← back</button>
+    <div class="award-card">
+      <button class="award-arrow" id="awardPrev" aria-label="Previous">‹</button>
+      <div class="award-content">
+        <p class="award-eyebrow" id="awardEyebrow"></p>
+        <h2 class="award-title">Best <span id="awardKind"></span> Award</h2>
+        <p class="award-sub">this award is presented to:</p>
+        <p class="award-name" id="awardName"></p>
+        <hr class="award-rule">
+        <p class="award-msg" id="awardMsg"></p>
+        <div class="ribbon-badge">🎗️</div>
+      </div>
+      <button class="award-arrow" id="awardNext" aria-label="Next">›</button>
+    </div>
+    <div class="award-dots" id="awardDots"></div>
+  </section>
+
+  <!-- ============ SURPRISE ============ -->
+  <section class="screen" id="screen-surprise">
+    <button class="back-btn" data-target="hub">← back</button>
+    <div class="surprise-card">
+      <h1 class="surprise-title">surprise awaiting<span class="heart-suffix">♡</span></h1>
+      <svg class="mascot bounce" viewBox="0 0 120 120" width="100" height="100">
+        <ellipse cx="60" cy="72" rx="34" ry="30" fill="#FFDE7A"/>
+        <ellipse cx="60" cy="40" rx="24" ry="22" fill="#FFDE7A"/>
+        <path d="M60 34 l9 9 l-9 4 l-9 -4 Z" fill="#FF9B4A"/>
+        <circle cx="52" cy="36" r="3.2" fill="#5A3A46"/>
+        <circle cx="68" cy="36" r="3.2" fill="#5A3A46"/>
+        <path d="M52 44 Q60 50 68 44" stroke="#C6446B" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <button class="surprise-btn" id="surpriseBtn">surprise</button>
+    </div>
+  </section>
+
+  <!-- ============ FINALE ============ -->
+  <section class="screen" id="screen-finale">
+    <div class="confetti-layer" id="confettiLayer"></div>
+    <div class="finale-content">
+      <h1 class="finale-title" id="finaleTitle"></h1>
+      <p class="handwritten finale-msg" id="finaleMsg"></p>
+      <button class="back-btn finale-back" data-target="hub">← back to the box</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
